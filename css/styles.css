@@ -1,0 +1,129 @@
+:root {
+    --bg-color: #0d1117;
+    --surface-color: #161b22;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-purple: #8a2be2;
+    --accent-orange: #ff7b72;
+    --border-color: #30363d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--surface-color);
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar h2 {
+    color: var(--accent-purple);
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 12px 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.sidebar li.active, .sidebar li:hover {
+    background-color: rgba(138, 43, 226, 0.1);
+    color: var(--accent-purple);
+}
+
+/* Main Content */
+.dashboard-content {
+    padding: 30px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sync-status {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* Grid Layout */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+/* Tarjetas (Cards) */
+.card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.alert-card {
+    border: 1px solid var(--accent-orange);
+    box-shadow: 0 0 15px rgba(255, 123, 114, 0.1);
+}
+
+.warning-icon { color: var(--accent-orange); font-weight: bold; }
+.highlight { color: var(--accent-orange); font-size: 1.1em; margin: 10px 0; }
+
+/* Botones */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-primary { background-color: var(--accent-purple); color: white; }
+.btn-primary:hover { filter: brightness(1.2); }
+
+.btn-secondary { background-color: transparent; border: 1px solid var(--accent-purple); color: var(--accent-purple); }
+.btn-secondary:hover { background-color: rgba(138, 43, 226, 0.1); }
+
+.w-100 { width: 100%; }
+.mt-10 { margin-top: 10px; }
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .app-container { grid-template-columns: 1fr; }
+    .sidebar { display: none; /* Aquí iría un menú hamburguesa luego */ }
+    .grid-layout { grid-template-columns: 1fr; }
+}

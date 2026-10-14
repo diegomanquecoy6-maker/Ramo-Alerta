@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RamoAlerta | Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Barra Lateral / Navegación Móvil -->
+        <nav class="sidebar">
+            <h2 class="logo">RamoAlerta</h2>
+            <ul>
+                <li class="active">Dashboard</li>
+                <li>Mis Ramos</li>
+                <li>Calendario</li>
+                <li>Historial</li>
+            </ul>
+            <button id="btn-instalar" class="btn-primary" hidden>Descargar App 📱</button>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <main class="dashboard-content">
+            <header>
+                <h1>Semestre Actual</h1>
+                <div class="sync-status">Google Calendar Sincronizado 🟢</div>
+            </header>
+           
+<div class="card">
+    <h3>📚 Añadir Nuevo Ramo</h3>
+    <div style="display: flex; gap: 10px; margin-top: 15px;">
+        <input type="text" id="input-nombre-ramo" placeholder="Ej: Cálculo 2" style="flex: 1; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: white;">
+        <button id="btn-guardar-ramo" class="btn-primary">Guardar</button>
+    </div>
+    <p id="mensaje-guardado" style="margin-top: 10px; font-size: 0.9em; color: #4caf50;"></p>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    <h3>✍️ Agregar Nota</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+        <!-- Este select se llenará solo con JavaScript -->
+        <select id="select-ramo" style="padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: white;">
+            <option value="">Selecciona un ramo...</option>
+        </select>
+        
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="input-nombre-eval" placeholder="Ej: Prueba 1" style="flex: 2; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: white;">
+            <input type="number" id="input-nota" placeholder="Nota (Ej: 5.5)" step="0.1" style="flex: 1; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: white;">
+            <input type="number" id="input-ponderacion" placeholder="% (Ej: 30)" style="flex: 1; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: white;">
+        </div>
+
+        <input type="text" id="input-desc-eval" placeholder="Descripción de los temas evaluados..." style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: white; box-sizing: border-box;">
+        
+        <button id="btn-guardar-nota" class="btn-primary" style="width: 100%;">Guardar Nota</button>
+    </div>
+    <p id="mensaje-nota" style="margin-top: 10px; font-size: 0.9em;"></p>
+</div>
+        
+    
+<div class="card" style="margin-top: 20px;">
+    <h3>📋 Mis Ramos Guardados</h3>
+    <ul id="lista-ramos" style="list-style-type: none; padding: 0; margin-top: 15px;">
+        <!-- Los ramos inyectados por JavaScript aparecerán aquí -->
+    </ul>
+</div>
+
+<!-- Panel oculto para mostrar las notas -->
+<div class="card" id="tarjeta-detalle-notas" style="margin-top: 20px; display: none; border: 1px solid #2196f3;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 id="titulo-detalle-notas" style="margin: 0; color: #2196f3;">Notas del Ramo</h3>
+        <button onclick="document.getElementById('tarjeta-detalle-notas').style.display='none'" style="background: transparent; color: #aaa; border: none; cursor: pointer; font-size: 1.2em;">✖</button>
+    </div>
+    <ul id="lista-notas" style="list-style-type: none; padding: 0; margin-top: 15px;">
+        <!-- Aquí se inyectarán las notas con JS -->
+    </ul>
+</div>
+
+<div class="card" style="border: 1px solid #ff5252;">
+    <div style="display: flex; justify-content: space-between; color: #ff5252; margin-bottom: 10px;">
+        <strong>⚠️ ALERTA DE SUPERVIVENCIA</strong>
+        <span id="alerta-porcentaje" style="font-size: 0.85em; color: #aaa;">0% Evaluado</span>
+    </div>
+    <h3 id="alerta-nombre-ramo" style="margin: 0 0 10px 0;">Selecciona un ramo para analizar</h3>
+    <p id="alerta-mensaje" style="color: #e0e0e0; margin-bottom: 10px;">Aquí aparecerá tu estado actual y lo que necesitas para aprobar.</p>
+    <p style="margin-bottom: 15px;">Promedio actual ponderado: <strong id="alerta-promedio">-</strong></p>
+    
+    <div style="display: flex; gap: 10px;">
+        <button class="btn-outline">Resumen IA ✨</button>
+        <button class="btn-outline">Simular Quiz 📝</button>
+    </div>
+</div>
+
+                    <div class="card normal-card">
+                        <div class="card-header">
+                            <span class="subject">Base de Datos</span>
+                            <span class="fecha">20 de Oct</span>
+                        </div>
+                        <p><strong>Prueba 1 (30%)</strong> - Modelo Relacional, llaves foráneas...</p>
+                        <p>Necesitas: 4.0 para un 4.0 final</p>
+                        <p>Promedio: 5.2</p>
+                    </div>
+                </section>
+
+                <!-- Columna Derecha: IA y Extras -->
+                <aside class="sidebar-right">
+<div class="card ia-card">
+    <h3>🤖 Asistente IA</h3>
+    <p style="font-size: 0.85em; color: #aaa; margin-bottom: 10px;">Selecciona qué prueba vas a estudiar:</p>
+    
+    <select id="ia-select-ramo" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; background: #222; color: white; border: 1px solid #444;">
+        <option value="">1. Elige un ramo...</option>
+    </select>
+    
+    <select id="ia-select-eval" style="width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 4px; background: #222; color: white; border: 1px solid #444;" disabled>
+        <option value="">2. Elige una prueba...</option>
+    </select>
+
+    <button class="btn-primary" id="btn-generar-guia" style="width: 100%; background: #9c27b0; margin-bottom: 10px;">Generar PDF de Estudio ✨</button>
+    <!-- NUEVO BOTÓN PARA EL QUIZ -->
+    <button class="btn-secondary" id="btn-simular-quiz" style="width: 100%; background: #ff9800; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; margin-bottom: 15px;">Simular Quiz Interactivo 📝</button>
+
+    <div id="resultado-ia" style="margin-top: 15px; font-size: 0.9em; color: #e0e0e0; white-space: pre-wrap;"></div>
+
+</div>
+                </aside>
+            </div>
+
+            <!-- Modal oculto para el Quiz -->
+<div id="modal-quiz" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px;">
+    <div class="card" style="width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; background: #1e1e1e; border: 1px solid #ff9800; border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+            <h3 style="color: #ff9800; margin: 0;">📝 Quiz de Entrenamiento</h3>
+            <button onclick="cerrarQuiz()" style="background: transparent; border: none; color: white; font-size: 1.5em; cursor: pointer;">✖</button>
+        </div>
+        <div id="contenido-quiz">
+            <!-- Aquí JavaScript dibujará las preguntas -->
+        </div>
+    </div>
+</div>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
